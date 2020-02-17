@@ -22,7 +22,16 @@ const styles = StyleSheet.create({
   rightContainer: {
     // backgroundColor: 'blue',
     flex: 1,
-    flexDirection: 'column',  // column はデフォルトなので書かなくてもよい
+    flexDirection: 'column', // column はデフォルトなので書かなくてもよい
+    padding: 10,
+    justifyContent: 'space-between',
+  },
+  text: {
+    fontSize: 16,
+  },
+  subText: {
+    fontSize: 12,
+    color: 'gray',
   },
 });
 
@@ -37,12 +46,12 @@ export default function App() {
           />
         </View>
         <View style={styles.rightContainer}>
-          <Text numberOfLines={3}>
+          <Text numberOfLines={3} style={styles.text}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi u
           </Text>
-          <Text>ReactNews</Text>
+          <Text style={styles.subText}>ReactNews</Text>
         </View>
       </View>
     </View>
