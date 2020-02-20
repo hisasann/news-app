@@ -31,6 +31,9 @@
     "android": {
       "package": "com.hisasann.newsApp",
       "versionCode": 1
+    },
+    "extra": {
+      "newsApiKey": "33618508d4944d68a49e32aa3a71c566"
     }
   }
 }
