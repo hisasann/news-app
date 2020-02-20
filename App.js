@@ -1,13 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, View, FlatList, SafeAreaView } from 'react-native';
 import ListItem from './components/ListItem';
+import articles from './dummies/articles';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   itemContainer: {
     height: 100,
@@ -38,26 +37,18 @@ const styles = StyleSheet.create({
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <ListItem
-        imageUrl="https://picsum.photos/id/10/100/100"
-        author="SampleNews"
-        title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-               ad minim veniam, quis nostrud exercitation ullamco laboris nisi u"
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={articles}
+        renderItem={({ item }) => (
+          <ListItem
+            imageUrl={item.urlToImage}
+            title={item.title}
+            author={item.author}
+          />
+        )}
+        keyExtractor={(item, index) => index.toString()}
       />
-      <ListItem
-        imageUrl="https://picsum.photos/id/10/100/100"
-        author="SampleNews"
-        title="Hello World"
-      />
-      <ListItem
-        imageUrl="https://picsum.photos/id/10/100/100"
-        author="SampleNews"
-        title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-               ad minim veniam, quis nostrud exercitation ullamco laboris nisi u"
-      />
-    </View>
+    </SafeAreaView>
   );
 }
