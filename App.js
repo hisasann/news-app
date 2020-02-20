@@ -1,7 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, FlatList, SafeAreaView } from 'react-native';
 import ListItem from './components/ListItem';
 import dummyArticles from './dummies/articles';
+import Constants from 'expo-constants';
+import axios from 'axios';
+
+const URL = `http://newsapi.org/v2/top-headlines?country=jp&apiKey=${Constants.manifest.extra.newsApiKey}`;
 
 const styles = StyleSheet.create({
   container: {
@@ -38,17 +42,18 @@ const styles = StyleSheet.create({
 export default function App() {
   const [articles, setArticles] = useState([]);
 
-  // フック API リファレンス – React - https://ja.reactjs.org/docs/hooks-reference.html#conditionally-firing-an-effect
   useEffect(() => {
-    // alert('called');
-
-    const timer = setTimeout(() => {
-      setArticles(dummyArticles);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-    // 空の配列 ([]) を渡した場合、副作用内では props と state の値は常にその初期値のままになります。[] を渡すことはおなじみの componentDidMount と componentWillUnmount による概念と似ているように感じるでしょうが、通常はこちらやこちらのように、副作用を過度に再実行しないためのよりよい解決方法があります。また useEffect はブラウザが描画し終えた後まで遅延されますので、追加の作業をしてもそれほど問題にならないということもお忘れなく。
+    fetchArticles();
   }, []);
+
+  const fetchArticles = async () => {
+    try {
+      const response = await axios.get(URL);
+      setArticles(response.data.articles);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
