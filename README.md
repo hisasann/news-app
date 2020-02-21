@@ -1,5 +1,7 @@
 # 🧰 news-app
 
+[React Native入門：ニュースアプリを作りながら覚えよう/Hooks対応 2020年版 | Udemy](https://www.udemy.com/course/react-native-first-step/)
+
 ## expo-cliをインストールする
 
 [Expo — Learn how](https://expo.io/learn)
@@ -21,8 +23,22 @@ cd my-new-project
 expo start
 ```
 
-## Lorem Picsum
+## react-navigationのv4について
 
-サンプル画像を `https` で返してくれるサービス。
+こちらのコースでは `react-navigation` が、最新の v5 ではなく **v4** をベースに作られているので、
 
-[Lorem Picsum](https://picsum.photos/)
+見るドキュメントとコードに少し違いが出てきます。
+
+以下のようにバージョン指定して行うことで動作は問題なくできました。
+
+```bash
+$ yarn add react-navigation@4.0.10
+$ yarn add react-navigation-stack@1.10.3
+$ expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
+```
+
+[Getting started · React Navigation](https://reactnavigation.org/docs/en/4.x/getting-started.html)
+
+## 参考リンク
+
+* [Lorem Picsum](https://picsum.photos/)
