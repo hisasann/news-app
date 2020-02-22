@@ -39,6 +39,14 @@ $ expo install react-native-gesture-handler react-native-reanimated react-native
 
 [Getting started · React Navigation](https://reactnavigation.org/docs/en/4.x/getting-started.html)
 
+## react-native-debuggerについて
+
+```bash
+$ brew update && brew cask install react-native-debugger
+```
+
+[jhen0409/react-native-debugger: The standalone app based on official debugger of React Native, and includes React Inspector / Redux DevTools](https://github.com/jhen0409/react-native-debugger)
+
 ## 参考リンク
 
 * [Lorem Picsum](https://picsum.photos/)
