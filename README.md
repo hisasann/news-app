@@ -39,13 +39,39 @@ $ expo install react-native-gesture-handler react-native-reanimated react-native
 
 [Getting started · React Navigation](https://reactnavigation.org/docs/en/4.x/getting-started.html)
 
-## react-native-debuggerについて
+## React Native Debuggerを使ってみる
+
+Homebrew で `react-native-debugger` をインストールします。
 
 ```bash
 $ brew update && brew cask install react-native-debugger
 ```
 
 [jhen0409/react-native-debugger: The standalone app based on official debugger of React Native, and includes React Inspector / Redux DevTools](https://github.com/jhen0409/react-native-debugger)
+
+続いて、 ReactNative プロジェクトのディレクトリで以下を実行します。
+
+```bash
+$ yarn add redux-devtools-extension
+```
+
+[zalmoxisus/redux-devtools-extension: Redux DevTools extension.](https://github.com/zalmoxisus/redux-devtools-extension)
+
+Redux を React Native Debugger でデバッグできるようにします。
+
+```javascript
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+...
+
+const store = createStore(rootReducer, composeWithDevTools());
+```
+
+alfred で **React Native Debugger.app** を起動します。
+
+iOS シミュレーター側で `Command + D` -> Debug Remote JS をクリックします。
+
+これで、 ReactNativeDebugger と iOS シミュレーターがコネクトされます。
 
 ## 参考リンク
 
