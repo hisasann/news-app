@@ -9,6 +9,7 @@ import {
 import { WebView } from 'react-native-webview';
 import { connect } from 'react-redux';
 import { addClip, deleteClip } from '../store/actions/user';
+import ClipButton from '../components/ClipButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,18 +26,25 @@ const ArticleScreen = props => {
     setUrl(article.url);
   }, []);
 
+  const isClipppd = () => {
+    const article = props.navigation.getParam('article');
+    return props.user.clips.some(clip => clip.url === article.url);
+  };
+
+  const toggleClip = () => {
+    if (isClipppd()) {
+      props.deleteClip({ clip: props.navigation.getParam('article') });
+    } else {
+      props.addClip({ clip: props.navigation.getParam('article') });
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity onPress={() => {
-        props.addClip({clip: props.navigation.getParam('article')});
-      }}>
-        <Text style={{ fontSize: 30, margin: 10 }}>ADD_CLIP</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => {
-        props.deleteClip({clip: props.navigation.getParam('article')});
-      }}>
-        <Text style={{ fontSize: 30, margin: 10 }}>DELETE_CLIP</Text>
-      </TouchableOpacity>
+      <ClipButton
+        onPress={toggleClip}
+        enabled={isClipppd()}
+      />
       <WebView source={{ uri: url }} />
     </SafeAreaView>
   );
@@ -45,8 +53,8 @@ const ArticleScreen = props => {
 const mapStateToProps = state => {
   return {
     user: state.user,
-  }
+  };
 };
-const mapDispatchToProps = {addClip, deleteClip};
+const mapDispatchToProps = { addClip, deleteClip };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleScreen);
