@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Blank Template",
+    "name": "news-app",
     "slug": "news-app",
     "privacy": "public",
     "sdkVersion": "36.0.0",
