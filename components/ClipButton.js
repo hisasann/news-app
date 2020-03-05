@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ClipButton = ({ onPress, enabled }) => {
+const ClipButton = ({ onPress, enabled }) => {
   const name = enabled ? 'bookmark' : 'bookmark-o';
 
   return (
@@ -22,3 +22,5 @@ export default ClipButton = ({ onPress, enabled }) => {
     </TouchableOpacity>
   );
 };
+
+export default ClipButton;

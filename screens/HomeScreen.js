@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen = ({ navigation }) => {
+const HomeScreen = ({ navigation }) => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
@@ -50,3 +50,5 @@ export default HomeScreen = ({ navigation }) => {
     </SafeAreaView>
   );
 };
+
+export default HomeScreen;

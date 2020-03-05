@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { WebView } from 'react-native-webview';
+// react-native-web-community/react-native-web-webview: React Native for Web implementation of RN's WebView - https://github.com/react-native-web-community/react-native-web-webview
+// import WebView from 'react-native-web-webview';
 import { connect } from 'react-redux';
 import { addClip, deleteClip } from '../store/actions/user';
 import ClipButton from '../components/ClipButton';
@@ -45,7 +47,16 @@ const ArticleScreen = props => {
         onPress={toggleClip}
         enabled={isClipppd()}
       />
-      <WebView source={{ uri: url }} />
+      {/*
+        おそらく iframe で表示されるため、 sameorigin じゃないのでエラーが履かれてしまう
+        Refused to display 'https://headlines.yahoo.co.jp/hl?a=20200305-00000091-mai-int' in a frame because it set 'X-Frame-Options' to 'sameorigin'
+      */}
+      <WebView
+        // style={{width: 300, height: 300}}
+        originWhitelist={['*']}
+        // source={{ html: '<h1>Hello world</h1>' }}
+        source={{ uri: url }}
+      />
     </SafeAreaView>
   );
 };
