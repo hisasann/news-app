@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, Entypo } from '@expo/vector-icons';
 
 const styles = StyleSheet.create({
   container: {
@@ -9,11 +9,14 @@ const styles = StyleSheet.create({
 });
 
 const ClipButton = ({ onPress, enabled }) => {
-  const name = enabled ? 'bookmark' : 'bookmark-o';
+  // FontAwesome
+  // const name = enabled ? 'bookmark' : 'bookmark-o';
+  // Entypo
+  const name = enabled ? 'bookmarks' : 'bookmark';
 
   return (
     <TouchableOpacity onPress={onPress}>
-      <FontAwesome
+      <Entypo
         name={name}
         size={40}
         color="gray"
