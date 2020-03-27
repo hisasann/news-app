@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, Text, FlatList } from 'react-native';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ListItem from '../components/ListItem';
 
 const styles = StyleSheet.create({
@@ -10,11 +10,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const ClipScreen = props => {
+const ClipScreen = ({ navigation }) => {
+  const user = useSelector((state) => state.user);
+  const { clips } = user;
+
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={props.user.clips}
+        data={clips}
         renderItem={({ item }) => {
           return (
             <ListItem
@@ -22,8 +25,8 @@ const ClipScreen = props => {
               title={item.title}
               author={item.author}
               onPress={() => {
-                props.navigation.navigate('Article', {
-                  article: item
+                navigation.navigate('Article', {
+                  article: item,
                 });
               }}
             />
@@ -35,10 +38,4 @@ const ClipScreen = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    user: state.user,
-  };
-};
-
-export default connect(mapStateToProps, null)(ClipScreen);
+export default ClipScreen;
